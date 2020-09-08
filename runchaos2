@@ -1,0 +1,62 @@
+set terminal gif animate delay 5 loop 0 optimize
+
+
+set terminal wxt background 'black'
+unset border
+unset tics
+unset key
+
+
+
+set title 'set palette file "-" using 1:2:($1+$2)/2'
+set palette file "-" using ($0):1:2:(($1+$2)/2)
+0 0
+0 1
+1 0
+1 1
+e
+
+set xrange[-30:30]
+set yrange[-30:30]
+set zrange[-5:52]
+
+
+unset colorbox
+
+
+n=2081
+
+do for [ii=1:n] {
+    set view 85, ii*360/n
+    
+    set multiplot layout 1,1
+    
+    splot 'chaos1.dat' every ::ii-80::ii  with l lt 1 lw 1  lc palette , \
+          'chaos1.dat' every ::ii::ii w p pt 7 ps 2 ,\
+          'chaos2.dat' every ::ii-80::ii  with l lt 1 lw 1 lc rgb "yellow", \
+          'chaos2.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "yellow" ,\
+          'chaos3.dat' every ::ii-80::ii  with l lt 1 lw 1 lc palette ,\
+          'chaos3.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "green" ,\
+          'chaos4.dat' every ::ii-80::ii  with l lt 1 lw 1 lc rgb "violet" ,\
+          'chaos4.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "violet"  ,\
+          'chaos5.dat' every ::ii-80::ii  with l lt 1 lw 1 lc palette ,\
+          'chaos5.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "blue"  ,\
+          'chaos6.dat' every ::ii-80::ii  with l lt 1 lw 1 lc palette ,\
+          'chaos6.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "pink"  ,\
+          'chaos7.dat' every ::ii-80::ii  with l lt 1 lw 1 lc palette ,\
+          'chaos7.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "cyan" ,\
+          'chaos8.dat' every ::ii-80::ii  with l lt 1 lw 1 lc rgb "green" ,\
+          'chaos8.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "green"  ,\
+          'chaos9.dat' every ::ii-80::ii  with l lt 1 lw 1 lc palette ,\
+          'chaos9.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "orange"  ,\
+          'chaos10.dat' every ::ii-80::ii  with l lt 1 lw 1 lc rgb "#4F42B5" ,\
+          'chaos10.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "white"  ,\
+          'chaos11.dat' every ::ii-80::ii  with l lt 1 lw 1 lc rgb "#ADFF2F" ,\
+          'chaos11.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "#ADFF2F"  ,\
+          'chaos12.dat' every ::ii-80::ii  with l lt 1 lw 1 lc rgb "#228B22" ,\
+          'chaos12.dat' every ::ii::ii w p pt 7 ps 2 lc rgb "#228B22"  
+          
+    unset multiplot      
+}
+
+
